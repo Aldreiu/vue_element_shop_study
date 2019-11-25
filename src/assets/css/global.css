@@ -1,0 +1,11 @@
+/* 全局样式表 */
+html,
+body,
+#app {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+body{
+    background-image: url('../../image/gamersky_02origin_03_201862184761B.jpg');
+}
