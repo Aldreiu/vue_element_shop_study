@@ -4,7 +4,7 @@
       <!-- 头像 -->
       <div class="avatar_box">
         <img
-          src="../image/121953146867.gif"
+          src="../assets/image/121953146867.gif"
           alt
         />
       </div>
@@ -15,6 +15,7 @@
         :rules="loginFormRules"
         label-width="0px"
         class="login_form"
+        @submit.native.prevent
       >
         <!-- 用户名 -->
         <el-form-item prop="username">
@@ -38,7 +39,9 @@
             @click="login"
             class="primary_bg_l"
             type="primary"
-          >登录</el-button>
+            native-type="submit"
+            :loading="loading.lodingtf"
+          >{{loading.loadingname}}</el-button>
           <el-button
             @click="resetLoginForm"
             class="primary_bg_r"
@@ -71,6 +74,11 @@ export default {
           { required: true, message: '请输入正确密码', trigger: 'blur' },
           { min: 3, max: 15, message: '密碼长度在 3 到 15 个字符', trigger: 'blur' }
         ]
+      },
+      // loading 防止用户多次触发提交
+      loading: {
+        lodingtf: false,
+        loadingname: '登录'
       }
     }
   },
@@ -83,11 +91,18 @@ export default {
     // 登录 提交表单的预验证
     login () {
       this.$refs.loginFormRef.validate(async valid => {
+        this.loading.lodingtf = true
+        this.loading.loadingname = '登录中'
         // console.log(valid)
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
         // console.log(res)
-        if (res.meta.status !== 200) return this.$message.error('登录失败')
+        if (res.meta.status !== 200) {
+          this.loading.lodingtf = false
+          this.loading.loadingname = '登录'
+          this.$message.error('登录失败,请输入正确账号和密码')
+          return
+        }
         this.$message({
           message: '登陆成功',
           type: 'success'

@@ -7,5 +7,15 @@ body,
     height: 100%;
 }
 body{
-    background-image: url('../../image/gamersky_02origin_03_201862184761B.jpg');
+    background-image: url('../image/gamersky_02origin_03_201862184761B.jpg');
+}
+
+.el-breadcrumb{
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+.el-table{
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
