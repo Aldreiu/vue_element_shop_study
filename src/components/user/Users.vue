@@ -153,7 +153,7 @@
       title="提示"
       :visible.sync="addDialogVisible"
       width="40%"
-      @close="addDialogClose"
+      @close="addCateDialogClose"
     >
       <el-form
         ref="addFormRef"

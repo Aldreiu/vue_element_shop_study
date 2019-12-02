@@ -25,3 +25,11 @@ body{
   display: flex;
   align-items: center;
 }
+
+.tree_table{
+    margin-top: 15px;
+}
+
+.el-cascader{
+    width: 100%;
+}
