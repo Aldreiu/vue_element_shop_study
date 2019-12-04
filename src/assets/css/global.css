@@ -33,3 +33,30 @@ body{
 .el-cascader{
     width: 100%;
 }
+
+.ParamsCascader{
+    width: 200px;
+}
+
+.ParamsRowCascader{
+    margin-top: 25px;
+}
+
+.Params_tag{
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.input-new-tag {
+    width: 90px;
+    margin-left: 10px;
+    /* vertical-align: bottom; */
+  }
+
+  .button-new-tag {
+    margin-left: 10px;
+    height: 32px;
+    line-height: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
