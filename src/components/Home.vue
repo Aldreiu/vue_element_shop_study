@@ -33,7 +33,7 @@
           class="el-aside-menu"
           unique-opened
           router
-          :default-active="$route.path"
+          :default-active="activePath"
           text-color="#fff"
           active-text-color="rgb(0, 161, 214)"
         >
@@ -58,6 +58,7 @@
               :index="'/'+subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
+              @click="saveNavState('/'+subItem.path)"
             >
               <template
                 slot="title"
@@ -97,11 +98,14 @@ export default {
         'el-icon-s-marketing'
       ],
       // 折叠的判断属性
-      isCollapse: false
+      isCollapse: false,
+      // 激活连接地址
+      activePath: ''
     }
   },
   created () {
     this.getMenuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     logout () {
@@ -130,6 +134,10 @@ export default {
     // 侧边栏折叠效果
     toggleCollapse () {
       this.isCollapse = !this.isCollapse
+    },
+    // 保存连接的激活状态
+    saveNavState (activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
     }
   }
 }
