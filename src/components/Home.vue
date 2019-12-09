@@ -106,6 +106,7 @@ export default {
   created () {
     this.getMenuList()
     this.activePath = window.sessionStorage.getItem('activePath')
+    this.deleteNabState()
   },
   methods: {
     logout () {
@@ -138,6 +139,21 @@ export default {
     // 保存连接的激活状态
     saveNavState (activePath) {
       window.sessionStorage.setItem('activePath', activePath)
+    },
+    // 当是首页时删除激活状态
+    deleteNabState () {
+      if (this.$route.path === '/welcome' || this.$route.path === '/') {
+        window.sessionStorage.removeItem('activePath')
+      }
+      console.log(this.$route.path)
+    }
+  },
+  watch: {
+    $route (to, from) {
+      console.log(to.path)
+      if (to.path === '/welcome' || to.path === '/') {
+        window.sessionStorage.removeItem('activePath')
+      }
     }
   }
 }

@@ -93,6 +93,10 @@ export default {
       this.$refs.loginFormRef.validate(async valid => {
         this.loading.lodingtf = true
         this.loading.loadingname = '登录中'
+        setTimeout(() => {
+          this.loading.lodingtf = false
+          this.loading.loadingname = '登录'
+        }, 6000)
         // console.log(valid)
         if (!valid) return
         const { data: res } = await this.$http.post('login', this.loginForm)
@@ -100,8 +104,7 @@ export default {
         if (res.meta.status !== 200) {
           this.loading.lodingtf = false
           this.loading.loadingname = '登录'
-          this.$message.error('登录失败,请输入正确账号和密码')
-          return
+          return this.$message.error('登录失败,请输入正确账号和密码')
         }
         this.$message({
           message: '登陆成功',
