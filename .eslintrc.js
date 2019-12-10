@@ -9,9 +9,7 @@ module.exports = {
   ],
   rules: {
     'no-console': 'off',
-    'no-debugger': 'off',
-    'vue/no-unused-vars': 'warning',
-    'vue/no-unused-components': 'warning'
+    'no-debugger': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint'

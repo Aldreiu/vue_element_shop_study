@@ -13,14 +13,24 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+// 导入 NProgresss toploading的js和css
+import Nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 // 配置請求的根路徑
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // 拦截器
 axios.interceptors.request.use(config => {
+  // 在request 拦截器中 展示进度条  Nprogress.start()
+  Nprogress.start()
   console.log(config)
   config.headers.Authorization = window.sessionStorage.getItem('token')
   // 必须return config
+  return config
+})
+// 在reponse 拦截器中 隐藏进度条  Nprogress.done()
+axios.interceptors.response.use(config => {
+  Nprogress.done()
   return config
 })
 Vue.prototype.$http = axios
